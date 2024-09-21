@@ -1,0 +1,65 @@
+.result {
+  padding: 20px;
+  text-align: center;
+
+  .book-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); // 4 cột
+    gap: 20px; 
+    width: 850px; 
+    margin: 0 auto; 
+    box-sizing: border-box; 
+  }
+
+  .book-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    box-sizing: border-box; 
+    margin-bottom: 20px; 
+  }
+
+  .book-wrapper {
+    width: 100%; // Đặt chiều rộng 100% để bao phủ khung
+    height: auto; // Đặt chiều cao tự động
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .book-cover {
+    width: 100%; // Đặt chiều rộng 100% để ảnh chiếm toàn bộ khung
+    height: 200px; // Đặt chiều cao cố định
+    object-fit: cover; // Cắt ảnh để vừa khung mà không bị lặp lại
+    border-bottom: 1px solid #ddd;
+  }
+
+  .book-info {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: auto; 
+    box-sizing: border-box;
+    text-align: center;
+
+    .book-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+
+  .button-book {
+    margin-top: 10px; 
+    padding: 10px; 
+  }
+}
