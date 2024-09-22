@@ -11,7 +11,7 @@ function SideList() {
 
   useEffect(() => {
     // Lấy dữ liệu từ API để lấy danh sách các subcategory
-    fetch('https://librarysystem-backend.onrender.com/api/v1/allBook')
+    fetch('http://localhost:5000/api/v1/allBook')
       .then(response => response.json())
       .then(data => {
         const uniqueSubcategories = [...new Set(data.map(book => book.subcategory))];

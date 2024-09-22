@@ -26,7 +26,7 @@ function References() {
   };
 
   useEffect(() => {
-    fetch('https://librarysystem-backend.onrender.com/api/v1/allBook?genre=Tailieu')
+    fetch('http://localhost:5000/api/v1/allBook?genre=Tailieu')
       .then(response => response.json())
       .then(data => setBooks(data || []))
       .catch(error => console.error('Error fetching books:', error))
@@ -48,7 +48,7 @@ function References() {
       return;
     }
 
-    fetch('https://librarysystem-backend.onrender.com/api/v1/borrow', {
+    fetch('http://localhost:5000/api/v1/borrow', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ function References() {
       })
       .then(data => {
         alert('Đăng ký thành công!');
-        fetch('https://librarysystem-backend.onrender.com/api/v1/allBook?genre=Tailieu')
+        fetch('http://localhost:5000/api/v1/allBook?genre=Tailieu')
           .then(response => response.json())
           .then(data => setBooks(data || []))
           .catch(error => console.error('Error fetching updated books:', error));

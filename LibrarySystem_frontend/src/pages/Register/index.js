@@ -14,7 +14,7 @@ function Register() {
 
   const onFinish = async (values) => {
     try {
-      const response = await axios.post('https://librarysystem-backend.onrender.com/api/v1/register', values);
+      const response = await axios.post('http://localhost:5000/api/v1/register', values);
 
       if (response.data.success) {
         message.success("Đăng ký thành công!");

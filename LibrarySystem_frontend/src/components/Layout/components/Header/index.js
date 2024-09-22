@@ -29,7 +29,7 @@ function Header() {
 
 const handleLogout = async () => {
     try {
-        await fetch('https://librarysystem-backend.onrender.com/api/v1/logout', {
+        await fetch('http://localhost:5000/api/v1/logout', {
             method: 'POST',
             credentials: 'include',
         });

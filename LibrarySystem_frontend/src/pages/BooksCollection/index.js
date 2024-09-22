@@ -24,7 +24,7 @@ function BooksCollection() {
   };
 
   useEffect(() => {
-    fetch('https://librarysystem-backend.onrender.com/api/v1/allBook?genre=Sachtonghop')
+    fetch('http://localhost:5000/api/v1/allBook?genre=Sachtonghop')
       .then(response => response.json())
       .then(data => setBooks(data || []))
       .catch(error => console.error('Error fetching books:', error))
@@ -45,7 +45,7 @@ function BooksCollection() {
       navigate('/login')
       return
     }
-    fetch(`https://librarysystem-backend.onrender.com/api/v1/borrow`, {
+    fetch(`http://localhost:5000/api/v1/borrow`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ function BooksCollection() {
       })
       .then(data => {
         alert('Đăng ký thành công!');
-        fetch('https://librarysystem-backend.onrender.com/api/v1/allBook?genre')
+        fetch('http://localhost:5000/api/v1/allBook?genre')
           .then(response => response.json())
           .then(data => setBooks(data || []))
           .catch(error => console.error('Error fetching updated books:', error));

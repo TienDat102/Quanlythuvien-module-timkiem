@@ -28,7 +28,7 @@ function Search() {
             setSearchResult([]);
             return;
         }
-        fetch(`https://librarysystem-backend.onrender.com/api/v1/allBook?search=${encodeURIComponent(debounced)}&limit=4`)
+        fetch(`http://localhost:5000/api/v1/allBook?search=${encodeURIComponent(debounced)}&limit=4`)
             .then((res) => res.json())
             .then((res) => {
                 console.log('Search results:', res); // Kiểm tra kết quả tìm kiếm

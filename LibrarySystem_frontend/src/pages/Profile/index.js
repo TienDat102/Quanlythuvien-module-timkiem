@@ -23,7 +23,7 @@ function Profile() {
   };
 
   useEffect(() => {
-    axios.get('https://librarysystem-backend.onrender.com/api/v1/allBook')
+    axios.get('http://localhost:5000/api/v1/allBook')
       .then((response) => {
         const allBooks = response.data || [];
         const foundBook = allBooks.find((book) => convertToSlug(book.title) === id);
@@ -47,7 +47,7 @@ function Profile() {
       return;
     }
 
-    fetch(`https://librarysystem-backend.onrender.com/api/v1/borrow`, {
+    fetch(`http://localhost:5000/api/v1/borrow`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ function Profile() {
       })
       .then(data => {
         alert('Đăng ký thành công!');
-        return axios.get('https://librarysystem-backend.onrender.com/api/v1/allBook')
+        return axios.get('http://localhost:5000/api/v1/allBook')
           .then((response) => {
             const allBooks = response.data || [];
             const foundBook = allBooks.find((book) => convertToSlug(book.title) === id);
