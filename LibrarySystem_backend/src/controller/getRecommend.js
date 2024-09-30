@@ -16,7 +16,7 @@ const getRecommend = async (req, res) => {
             const pipeline = [
                 { $group: { _id: "$book", count: { $sum: 1 } } },
                 { $sort: { count: -1 } },
-                { $limit: 5 }
+                { $limit: 4 }
             ]
             const popurlarBooks = await Borrow.aggregate(pipeline);
             console.log("Popurlar Book: ", popurlarBooks)
@@ -29,12 +29,12 @@ const getRecommend = async (req, res) => {
             console.log('Recommended Books (Popular):', recommendBook);
             return res.send({ data: recommendBook });
         } else {
-            const genres = userGenreCounts.map(item => item.genre)
+            const genres = userGenreCounts.map(item => item.subcategory)
             const authors = userAuthorCounts.map(item => item.author)
             const pipeline = [
                 { $group: { _id: "$book", count: { $sum: 1 } } },
                 { $sort: { count: -1 } },
-                { $limit: 2 }
+                { $limit: 4 }
             ]
             const popurlarBooks = await Borrow.aggregate(pipeline);
             const popurlarBooksId = popurlarBooks.map(book => book._id);
@@ -43,7 +43,7 @@ const getRecommend = async (req, res) => {
             })
 
             const recommendedGenreBooks = await Books.find({
-                genre: { $in: genres }
+                subcategory: { $in: genres }
             }).limit(4);
             const recommendedAuthorBooks = await Books.find({
                 author: { $in: authors }

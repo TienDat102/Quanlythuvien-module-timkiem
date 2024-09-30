@@ -20,12 +20,11 @@ function Result() {
   const subcategory = searchParams.get('subcategory');
   const navigate = useNavigate();
 
-  // Convert title to slug
   const convertToSlug = (text) => {
     return text
       .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')  
-      .replace(/\s+/g, '-')           
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
       .trim();
   };
 
@@ -33,7 +32,7 @@ function Result() {
     setLoading(true);
     fetch(`http://localhost:5000/api/v1/allBook?search=${encodeURIComponent(query || '')}&subcategory=${encodeURIComponent(subcategory || '')}`)
       .then(response => response.json())
-      .then(data => setBooks(data || []))  // Ensure books are always set to an empty array if data is undefined
+      .then(data => setBooks(data || []))
       .catch(error => console.error('Error fetching books:', error))
       .finally(() => setLoading(false));
   }, [query, subcategory]);
@@ -52,7 +51,8 @@ function Result() {
       navigate('/login');
       return;
     }
-    fetch(`http://localhost:5000/api/v1/borrow`, {
+
+    fetch('http://localhost:5000/api/v1/borrow', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +72,6 @@ function Result() {
       })
       .then(() => {
         alert('Đăng ký thành công!');
-        // Refresh book list
         fetch(`http://localhost:5000/api/v1/allBook?search=${encodeURIComponent(query || '')}&subcategory=${encodeURIComponent(subcategory || '')}`)
           .then(response => response.json())
           .then(data => setBooks(data || []))
@@ -89,10 +88,10 @@ function Result() {
       <h2>Kết Quả Tìm Kiếm{query ? ` Cho: "${query}"` : ''}{subcategory ? ` - Thể loại: "${subcategory}"` : ''}</h2>
       <div className={cx('book-list')}>
         {loading ? (
-          <p>Loading...</p>  // Display loading text while fetching data
+          <p>Loading...</p> 
         ) : currentBooks.length > 0 ? (
           currentBooks.map((book) => (
-            <div className={cx('book-item')} key={book.id}>
+            <div className={cx('book-item')} key={book._id}>
               <Link to={`/book/${convertToSlug(book.title)}`} className={cx('book-wrapper')}>
                 <img
                   className={cx('book-cover')}
@@ -104,12 +103,12 @@ function Result() {
                 </div>
               </Link>
               <div className={cx('button-book')}>
-                <Button onClick={() => handleRegister(book.id)}>Đăng ký</Button>
+                <Button onClick={() => handleRegister(book._id)}>Đăng ký</Button>
               </div>
             </div>
           ))
         ) : (
-          <p>No books found.</p>
+          <p>Không có sách nào.</p>
         )}
       </div>
       <Pagination
