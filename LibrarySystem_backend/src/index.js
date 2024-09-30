@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const connectDB = require('./database/db');
 const app = express();
@@ -10,18 +11,17 @@ const cors = require('cors');
 
 // CORS configuration
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "https://librarysystem-nhom5.vercel.app",
     methods: ["POST", "GET", "PUT", "DELETE", "PATCH"],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Log JWT_SECRET (make sure not to expose this in production)
-const JWT_SECRET = 'your_secret_key_here'; // Ghi trực tiếp nếu không dùng biến môi trường
-console.log('JWT_SECRET:', JWT_SECRET);
+console.log('JWT_SECRET:', process.env.JWT_SECRET);
 
 app.use(express.json());
-const PORT = 5000; // Có thể thay đổi cổng nếu cần
+const PORT = process.env.PORT || 5000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
